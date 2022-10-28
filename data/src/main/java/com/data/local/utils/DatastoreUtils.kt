@@ -23,3 +23,5 @@ val Context.appThemeDatastore by preferencesDataStore(
 val IS_DARK_MODE = booleanPreferencesKey("is_dark_mode")
 
 val IS_SYSTEM_DEFAULT  = booleanPreferencesKey("is_system_default")
+
+val USER_PASSWORD = stringPreferencesKey("user_password")

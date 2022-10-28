@@ -47,15 +47,15 @@ abstract class BaseFragment<VB : ViewBinding>(
         progressUtils.hideDialog()
     }
 
-    fun errorAlert(message: String) {
+    fun showErrorAlert(message: String) {
         showAlert(getString(R.string.error), message, ToastUtils.TYPE.FAILURE)
     }
 
-    fun infoAlert(message: String) {
+    fun showInfoAlert(message: String) {
         showAlert(getString(R.string.info), message, ToastUtils.TYPE.INFO)
     }
 
-    fun successAlert(message: String) {
+    fun showSuccessAlert(message: String) {
         showAlert(getString(R.string.success), message, ToastUtils.TYPE.SUCCESS)
     }
 

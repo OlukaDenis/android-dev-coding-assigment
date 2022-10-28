@@ -30,10 +30,6 @@ class FetchSingleUserUseCase @Inject constructor(
             userId?.let {
                 val response = remote.fetchSingleUser(it)
 
-                response?.let { res ->
-                    local.saveUserToDb(res)
-                }
-
                 emit(Resource.Success(response))
             } ?: throw Exception("User id must not be null")
         } catch (throwable: Throwable) {

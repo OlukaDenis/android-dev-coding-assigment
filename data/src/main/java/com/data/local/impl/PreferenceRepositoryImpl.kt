@@ -61,4 +61,14 @@ class PreferenceRepositoryImpl @Inject constructor(
             throw throwable
         }
     }
+
+    override suspend fun savePassword(input: String) {
+        datastorePreference.edit {
+            it[USER_PASSWORD] = input
+        }
+    }
+
+    override fun getPassword(): Flow<String> = datastorePreference.data.map {
+        it[USER_PASSWORD] ?: ""
+    }
 }

@@ -12,7 +12,7 @@ class LocalRepositoryImpl @Inject constructor(
     private val localUserMapper: LocalUserMapper
 ) : LocalRepository {
 
-    override suspend fun saveUserToDb(user: UserEntity) {
+    override suspend fun saveUser(user: UserEntity) {
         userDao.insert(localUserMapper.toLocal(user))
     }
 

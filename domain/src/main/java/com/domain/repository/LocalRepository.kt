@@ -4,7 +4,7 @@ import com.domain.model.*
 
 interface LocalRepository {
 
-    suspend fun saveUserToDb(user: UserEntity)
+    suspend fun saveUser(user: UserEntity)
 
     suspend fun clearUsers()
 

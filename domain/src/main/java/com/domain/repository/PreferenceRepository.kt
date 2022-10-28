@@ -15,4 +15,8 @@ interface PreferenceRepository {
     suspend fun saveUser(user: UserEntity)
 
     fun getUser(): Flow<UserEntity>
+
+    suspend fun savePassword(input: String)
+
+    fun getPassword(): Flow<String>
 }
