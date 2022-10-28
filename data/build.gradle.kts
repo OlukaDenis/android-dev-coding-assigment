@@ -87,7 +87,6 @@ dependencies {
 
     implementation(Dependencies.Hilt.HILT_WORKER)
     implementation(Dependencies.Hilt.HILT_ANDROID)
-    implementation(Dependencies.Hilt.HILT_VIEWMODEL)
     kapt(Dependencies.Hilt.HILT_ANDROID_COMPILER)
     kapt(Dependencies.Hilt.HILT_COMPILER)
     testImplementation(Dependencies.Hilt.HILT_TEST)

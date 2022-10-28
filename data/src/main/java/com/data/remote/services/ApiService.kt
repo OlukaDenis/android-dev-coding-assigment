@@ -6,7 +6,22 @@ import retrofit2.http.*
 
 interface ApiService {
 
-    @POST("user/edit")
-    suspend fun editUser(@Body data: RequestBody): RemoteUser
+    @GET("users")
+    suspend fun fetchUsers(): List<RemoteUser>
+
+    @POST("users")
+    suspend fun createUser(@Body request: HashMap<String, Any>): RemoteUser
+
+    @GET("users/{id}")
+    suspend fun fetchUserById(@Path("id") userId: Long): RemoteUser
+
+    @GET("posts")
+    suspend fun fetchPosts(): List<RemotePost>
+
+    @POST("posts")
+    suspend fun createPost(@Body request: HashMap<String, Any>): RemotePost
+
+    @GET("posts/{id}")
+    suspend fun fetchPostById(@Path("id") postId: Long): RemotePost
 
 }

@@ -18,13 +18,13 @@ class FetchSingleUserUseCase @Inject constructor(
     private val remote: RemoteRepository,
     private val utilRepository: UtilRepository
 ) : BaseFlowUseCase<Long, Resource<UserEntity?>>(dispatcher) {
-    override fun run(parameter: Long?): Flow<Resource<UserEntity?>> = flow {
+    override fun run(param: Long?): Flow<Resource<UserEntity?>> = flow {
         emit(Resource.Loading)
         try {
             val user = local.getUser()
             val userId = when {
                 user != null -> user.id
-                parameter != null -> parameter
+                param != null -> param
                 else -> null
             }
             userId?.let {

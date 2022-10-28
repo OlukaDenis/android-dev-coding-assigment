@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/spacing_20"
+    android:paddingTop="@dimen/spacing_20"
+    android:paddingRight="@dimen/spacing_20"
+    android:paddingBottom="@dimen/spacing_20">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_20"
+        android:layout_marginTop="@dimen/spacing_50"
+        android:text="@string/register"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ilName"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_16"
+        style="@style/AppTextInputStyle"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtvLabel">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ilEmail"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_16"
+        style="@style/AppTextInputStyle"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ilPhone"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_16"
+        style="@style/AppTextInputStyle"
+        android:visibility="visible"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:maxLength="12"
+            android:inputType="phone" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ilPassword"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/spacing_16"
+        style="@style/AppTextInputStyle"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilPhone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:enabled="true"
+        android:minWidth="@dimen/spacing_200"
+        style="@style/PrimaryBtnStyle"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ilPassword"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:text="@string/registered_login_now"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignup"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ilPassword"
+        app:layout_constraintStart_toStartOf="@id/ilPassword"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

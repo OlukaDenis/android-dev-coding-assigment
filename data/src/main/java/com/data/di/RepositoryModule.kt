@@ -2,7 +2,6 @@ package com.data.di
 
 import com.data.local.impl.LocalRepositoryImpl
 import com.data.local.impl.PreferenceRepositoryImpl
-import com.data.remote.impl.AuthRepositoryImpl
 import com.data.remote.impl.RemoteRepositoryImpl
 import com.data.remote.impl.UtilRepositoryImpl
 import com.domain.repository.*
@@ -32,7 +31,4 @@ interface RepositoryModule {
     @Binds
     fun bindPreferenceRepository(impl: PreferenceRepositoryImpl): PreferenceRepository
 
-    @Singleton
-    @Binds
-    fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
 }

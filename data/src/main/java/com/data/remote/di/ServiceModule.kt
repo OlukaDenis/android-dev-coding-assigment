@@ -1,8 +1,5 @@
 package com.data.remote.di
 
-import com.data.qualifiers.ApiQualifier
-import com.data.qualifiers.AuthQualifier
-import com.data.remote.services.AuthService
 import com.data.remote.services.ApiService
 import dagger.Module
 import dagger.Provides
@@ -15,18 +12,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ServiceModule {
 
-    @Provides
-    @Singleton
-    internal fun provideAuthenticationService(
-        @AuthQualifier retrofit: Retrofit
-    ): AuthService {
-        return retrofit.create(AuthService::class.java)
-    }
 
     @Provides
     @Singleton
     internal fun provideApiService(
-        @ApiQualifier retrofit: Retrofit
+        retrofit: Retrofit
     ): ApiService {
         return retrofit.create(ApiService::class.java)
     }

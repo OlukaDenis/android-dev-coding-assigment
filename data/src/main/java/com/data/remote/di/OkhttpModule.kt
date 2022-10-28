@@ -2,8 +2,6 @@ package com.data.remote.di
 
 import android.app.Application
 import android.content.Context
-import com.data.qualifiers.ApiQualifier
-import com.data.qualifiers.AuthQualifier
 import com.data.util.DataConstants
 import com.makao.data.BuildConfig
 import dagger.Module
@@ -59,27 +57,7 @@ class OkhttpModule {
 
     @Provides
     @Singleton
-    @ApiQualifier
     internal fun provideApiOkhttpClient(
-        cache: Cache,
-        interceptor: HttpLoggingInterceptor,
-    ): OkHttpClient {
-        val builder = OkHttpClient.Builder()
-        builder.apply {
-            connectTimeout(60, TimeUnit.SECONDS)
-            readTimeout(60, TimeUnit.SECONDS)
-            writeTimeout(60, TimeUnit.SECONDS)
-            cache(cache)
-            addInterceptor(interceptor)
-        }
-        return builder.build()
-    }
-
-
-    @Provides
-    @Singleton
-    @AuthQualifier
-    internal fun provideAuthOkhttpClient(
         cache: Cache,
         interceptor: HttpLoggingInterceptor,
     ): OkHttpClient {

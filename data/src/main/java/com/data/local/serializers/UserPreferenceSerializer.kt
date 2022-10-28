@@ -1,15 +1,21 @@
 package com.data.local.serializers
 
-object UserPreferenceSerializer
+import androidx.datastore.core.CorruptionException
+import androidx.datastore.core.Serializer
+import androidx.datastore.preferences.protobuf.InvalidProtocolBufferException
+import com.data.UserPreferences
+import java.io.InputStream
+import java.io.OutputStream
 
-//object UserPreferenceSerializer : Serializer<UserPreference> {
-//    override val defaultValue: UserPreference = UserPreference.getDefaultInstance()
-//
-//    override suspend fun readFrom(input: InputStream): UserPreference = try {
-//            UserPreference.parseFrom(input)
-//        } catch (exception: InvalidProtocolBufferException) {
-//            throw CorruptionException("Cannot read proto.", exception)
-//        }
-//
-//    override suspend fun writeTo(t: UserPreference, output: OutputStream) = t.writeTo(output)
-//}
+
+object UserPreferenceSerializer : Serializer<UserPreferences> {
+    override val defaultValue: UserPreferences = UserPreferences.getDefaultInstance()
+
+    override suspend fun readFrom(input: InputStream): UserPreferences = try {
+        UserPreferences.parseFrom(input)
+        } catch (exception: InvalidProtocolBufferException) {
+            throw CorruptionException("Cannot read proto.", exception)
+        }
+
+    override suspend fun writeTo(t: UserPreferences, output: OutputStream) = t.writeTo(output)
+}

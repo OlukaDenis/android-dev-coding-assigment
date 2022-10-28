@@ -50,7 +50,7 @@ object Versions {
     }
 
     object AndroidX {
-        const val APP_COMPAT = "1.4.1"
+        const val APP_COMPAT = "1.5.1"
         const val CORE_KTX = "1.9.0"
         const val FRAGMENT_KTX = "1.4.0"
         const val NAVIGATION = "2.5.3"
@@ -92,7 +92,7 @@ object Versions {
         const val GOOGLE_GSON = "2.9.0"
         const val COIL = "1.4.0"
         const val PAGE_INDICATOR = "1.0.3@aar"
-        const val TIMBER = "4.7.0"
+        const val TIMBER = "5.0.1"
         const val ALERTER = "7.2.4"
         const val SPINKIT = "1.4.0"
         const val CIRCLE_IMAGE_VIEW = "3.1.0"

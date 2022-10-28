@@ -2,8 +2,6 @@ package com.data.remote.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.data.qualifiers.ApiQualifier
-import com.data.qualifiers.AuthQualifier
 import com.makao.data.BuildConfig
 import dagger.Module
 import dagger.Provides
@@ -32,26 +30,8 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    @ApiQualifier
     internal fun provideApiRetrofit(
-        @ApiQualifier client: OkHttpClient,
-        converterFactory: GsonConverterFactory
-    ): Retrofit {
-        val builder = Retrofit.Builder()
-        builder.apply {
-            baseUrl(BuildConfig.BASE_URL)
-            client(client)
-            addConverterFactory(converterFactory)
-        }
-        return builder.build()
-    }
-
-
-    @Provides
-    @Singleton
-    @AuthQualifier
-    internal fun provideAuthRetrofit(
-        @AuthQualifier client: OkHttpClient,
+        client: OkHttpClient,
         converterFactory: GsonConverterFactory
     ): Retrofit {
         val builder = Retrofit.Builder()

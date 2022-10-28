@@ -9,4 +9,23 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">Error</string>
+    <string name="info">Info</string>
+    <string name="success">Success</string>
+    <string name="password">Password</string>
+    <string name="log_in">Login</string>
+    <string name="reset_password"> <font color="#ffa31a"><b> Forgot password? </b></font></string>
+    <string name="not_registered_register_now">Not registered? <font color="#ffa31a"><b> Register now</b></font></string>
+    <string name="registered_login_now">
+        Already Registered? <font color="#ffa31a"><b> Login now</b> </font>
+    </string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_phone">Invalid phone</string>
+    <string name="name_required">Name required</string>
+    <string name="invalid_password">Invalid password</string>
 </resources>

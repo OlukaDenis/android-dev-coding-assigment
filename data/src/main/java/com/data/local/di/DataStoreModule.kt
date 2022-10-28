@@ -3,7 +3,9 @@ package com.data.local.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.data.UserPreferences
 import com.data.local.utils.appThemeDatastore
+import com.data.local.utils.userProtoDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,11 +17,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DataStoreModule {
 
-//    @Provides
-//    @Singleton
-//    internal fun provideUSerPreferenceDatastore(
-//        @ApplicationContext context: Context
-//    ): DataStore<UserPreference> = context.userProtoDataStore
+    @Provides
+    @Singleton
+    internal fun provideUSerPreferenceDatastore(
+        @ApplicationContext context: Context
+    ): DataStore<UserPreferences> = context.userProtoDataStore
 
     @Provides
     @Singleton

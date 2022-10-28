@@ -43,6 +43,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":data"))
 
     implementation(Dependencies.AndroidX.CORE_KTX)
     implementation(Dependencies.AndroidX.APP_COMPAT)
@@ -65,6 +67,7 @@ dependencies {
     implementation(Dependencies.Navigation.NAV_RUNTIME)
 
     implementation(Dependencies.Util.TIMBER)
+    implementation(Dependencies.Util.GOOGLE_GSON)
     implementation(Dependencies.Util.COIL)
     implementation(Dependencies.Util.ALERTER)
 

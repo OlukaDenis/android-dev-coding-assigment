@@ -11,4 +11,7 @@ data class UserEntity(
     val username: String,
     val phone: String,
     val website: String
-) : Parcelable
+) : Parcelable {
+
+    fun isEmpty() = email.isEmpty() && username.isEmpty() && phone.isEmpty()
+}

@@ -101,8 +101,6 @@ object Dependencies {
     object Hilt {
         const val HILT_ANDROID = "com.google.dagger:hilt-android:${Versions.Hilt.HILT_CORE}"
         const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.Hilt.HILT_CORE}"
-        //        const val COMPILER = "com.google.dagger:hilt-compiler:${Versions.Hilt.HILT_CORE}"
-        const val HILT_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.Hilt.ANDROID_X_COMPILER}"
         const val HILT_COMPILER = "androidx.hilt:hilt-compiler:${Versions.Hilt.HILT_COMPILER}"
         const val HILT_TEST = "com.google.dagger:hilt-android-testing:${Versions.Hilt.HILT_CORE}"
         const val CLASSPATH = "com.google.dagger:hilt-android-gradle-plugin:${Versions.Hilt.HILT_CORE}"
