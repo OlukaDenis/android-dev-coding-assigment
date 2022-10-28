@@ -40,6 +40,8 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>(FragmentSignupBinding
                     hideProgressDialog()
                     val user = it.data as UserEntity
                     Timber.d("User saved: $user")
+                    showSuccessAlert("Account created successfully")
+                    navigateUp()
                 }
 
                 is BaseUiSate.Error -> {

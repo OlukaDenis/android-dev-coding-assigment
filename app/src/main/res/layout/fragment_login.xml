@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ilUserName"
+        android:id="@+id/ilEmail"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/spacing_40"
         style="@style/AppTextInputStyle"
@@ -34,10 +34,10 @@
         app:layout_constraintTop_toBottomOf="@+id/mtvLabel">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etUserName"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            android:hint="@string/email"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -47,10 +47,11 @@
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/spacing_16"
         style="@style/AppTextInputStyle"
+        app:passwordToggleEnabled="true"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ilUserName">
+        app:layout_constraintTop_toBottomOf="@+id/ilEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
