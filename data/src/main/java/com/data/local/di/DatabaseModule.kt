@@ -25,8 +25,15 @@ class DatabaseModule {
         APP_DATABASE_DB
     )
         .allowMainThreadQueries()
+        .fallbackToDestructiveMigration()
         .build()
 
+    @Singleton
     @Provides
     internal fun provideUserDao(database: AppDatabase) = database.userDao()
+
+
+    @Singleton
+    @Provides
+    internal fun providePostDao(database: AppDatabase) = database.postDao()
 }

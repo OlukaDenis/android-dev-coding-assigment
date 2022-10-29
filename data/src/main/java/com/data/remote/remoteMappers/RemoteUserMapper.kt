@@ -8,6 +8,7 @@ class RemoteUserMapper @Inject constructor(): BaseRemoteMapper<RemoteUser, UserE
     override fun mapToDomain(entity: RemoteUser): UserEntity {
         return UserEntity(
             id = entity.id ?: throw Exception("User id cannot be null"),
+            name = entity.name.orEmpty(),
             email = entity.email.orEmpty(),
             username = entity.username.orEmpty(),
             phone = entity.phone.orEmpty(),

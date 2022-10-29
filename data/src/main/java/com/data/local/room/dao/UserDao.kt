@@ -15,7 +15,7 @@ interface UserDao: BaseDao<LocalUser> {
     fun get(): Flow<List<LocalUser>>
 
     @Query("SELECT * FROM users WHERE id = :id")
-    fun getById(id: Long): LocalUser
+    fun getById(id: Long): Flow<LocalUser?>
 
     @Query("DELETE FROM users")
     fun clear()

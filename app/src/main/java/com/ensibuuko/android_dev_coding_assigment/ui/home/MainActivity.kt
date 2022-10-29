@@ -15,7 +15,9 @@ import androidx.navigation.fragment.findNavController
 import com.ensibuuko.android_dev_coding_assigment.R
 import com.ensibuuko.android_dev_coding_assigment.databinding.ActivityMainBinding
 import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding

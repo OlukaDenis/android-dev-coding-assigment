@@ -12,8 +12,8 @@ import javax.inject.Inject
 class RemoteRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val local: LocalRepository,
-    private val preferences: PreferenceRepository,
-    private val remoteUserMapper: RemoteUserMapper
+    private val remoteUserMapper: RemoteUserMapper,
+    private val remotePostMapper: RemotePostMapper
 ) : RemoteRepository {
 
     override suspend fun createUser(data: HashMap<String, Any>): UserEntity {
@@ -33,6 +33,17 @@ class RemoteRepositoryImpl @Inject constructor(
             local.updateUser(user)
 
             user
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun fetchPosts(): List<PostEntity> {
+        return try {
+            val response = apiService.fetchPosts()
+            val result = response.map { remotePostMapper.mapToDomain(it) }
+
+            result
         } catch (throwable: Throwable) {
             throw throwable
         }

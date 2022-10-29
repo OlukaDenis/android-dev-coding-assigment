@@ -1,6 +1,7 @@
 package com.domain.repository
 
 import com.domain.model.*
+import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {
 
@@ -10,6 +11,16 @@ interface LocalRepository {
 
     suspend fun getUser(): UserEntity?
 
+    fun getUserById(userId: Long): Flow<UserEntity?>
+
     suspend fun updateUser(user: UserEntity)
+
+    suspend fun insertPost(post: PostEntity)
+
+    suspend fun clearPosts()
+
+    suspend fun updatePost(post: PostEntity)
+
+    fun getPosts(): Flow<List<PostEntity>>
 
    }

@@ -1,8 +1,9 @@
 package com.domain.model
 
 data class PostEntity(
-    val body: String,
     val id: Long,
+    val body: String,
     val title: String,
-    val userId: Long
+    val userId: Long,
+    var user: UserEntity?
 )

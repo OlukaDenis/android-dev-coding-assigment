@@ -8,6 +8,7 @@ class LocalUserMapper @Inject constructor(): BaseLocalMapper<LocalUser, UserEnti
     override fun toDomain(entity: LocalUser): UserEntity {
         return UserEntity(
             id = entity.id,
+            name = entity.name,
             email = entity.email,
             username = entity.username,
             phone = entity.phone,
@@ -18,6 +19,7 @@ class LocalUserMapper @Inject constructor(): BaseLocalMapper<LocalUser, UserEnti
     override fun toLocal(entity: UserEntity): LocalUser {
         return LocalUser(
             id = entity.id,
+            name = entity.name,
             email = entity.email,
             username = entity.username,
             phone = entity.phone,

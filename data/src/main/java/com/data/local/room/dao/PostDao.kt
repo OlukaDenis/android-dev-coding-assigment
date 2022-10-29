@@ -1,0 +1,19 @@
+package com.data.local.room.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import com.data.base.BaseDao
+import com.data.local.model.LocalPost
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface PostDao: BaseDao<LocalPost> {
+    @Query("SELECT * FROM posts")
+    fun get(): Flow<List<LocalPost>>
+
+    @Query("SELECT * FROM posts WHERE id = :id")
+    fun getById(id: Long): LocalPost
+
+    @Query("DELETE FROM posts")
+    fun clear()
+}

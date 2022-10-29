@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class LocalUser(
     @PrimaryKey(autoGenerate = false)
     val id: Long,
+    val name: String,
     val email: String,
     val username: String,
     val phone: String,
