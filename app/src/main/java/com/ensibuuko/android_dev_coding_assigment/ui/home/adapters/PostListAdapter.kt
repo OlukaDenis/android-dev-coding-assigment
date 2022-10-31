@@ -1,6 +1,7 @@
 package com.ensibuuko.android_dev_coding_assigment.ui.home.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -27,7 +28,7 @@ class PostListAdapter(
 
     inner class PostViewHolder(
         private val binding: LayoutPostItemBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindEntity(entity: PostEntity) {
             with(binding) {
@@ -39,6 +40,8 @@ class PostListAdapter(
 
                 mtvBody.text = entity.body
                 mtvTitle.text = entity.title
+
+                civMenu.setOnClickListener { v -> clickListener.onMenuClicked(v, entity) }
             }
         }
     }
@@ -56,5 +59,6 @@ class PostListAdapter(
 
     interface PostClickListener {
         fun onItemClicked(entity: PostEntity)
+        fun onMenuClicked(view: View, entity: PostEntity)
     }
 }

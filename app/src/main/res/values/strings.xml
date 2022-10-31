@@ -35,4 +35,6 @@
     <string name="add_post_body">Add post body</string>
     <string name="add_post">Add Post</string>
     <string name="new_post">New Post</string>
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
 </resources>

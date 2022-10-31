@@ -44,6 +44,10 @@ class LocalRepositoryImpl @Inject constructor(
         postDao.clear()
     }
 
+    override suspend fun deletePostById(postId: Long) {
+        postDao.deleteById(postId)
+    }
+
     override suspend fun updatePost(post: PostEntity) {
         postDao.update(localPostMapper.toLocal(post))
     }

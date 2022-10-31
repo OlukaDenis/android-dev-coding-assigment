@@ -1,7 +1,9 @@
 package com.ensibuuko.android_dev_coding_assigment.ui.home
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.model.PostEntity
@@ -53,6 +55,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 override fun onItemClicked(entity: PostEntity) {
 
                 }
+
+                override fun onMenuClicked(view: View, entity: PostEntity) {
+                    showPostOptions(view, entity)
+                }
             })
 
             rvPosts.apply {
@@ -62,6 +68,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
             listAdapter.submitList(posts)
         }
+    }
+
+    private fun showPostOptions(view: View, entity: PostEntity) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.menuInflater.inflate(R.menu.post_menu, popupMenu.menu)
+
+        val menu = popupMenu.menu
+
+        val currentUser = viewModel.getUser
+        if (entity.userId != currentUser.id) {
+            menu.removeItem(R.id.action_delete_post)
+        }
+
+        popupMenu.setOnMenuItemClickListener { item: MenuItem ->
+            when (item.itemId) {
+                R.id.action_view_post -> {
+                    Timber.d("View post")
+                }
+
+                R.id.action_delete_post -> {
+                    viewModel.deletePost(entity)
+                }
+
+                else -> {}
+            }
+            true
+        }
+        popupMenu.show()
     }
 
 

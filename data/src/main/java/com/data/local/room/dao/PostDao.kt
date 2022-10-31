@@ -14,6 +14,9 @@ interface PostDao: BaseDao<LocalPost> {
     @Query("SELECT * FROM posts WHERE id = :id")
     fun getById(id: Long): LocalPost
 
+    @Query("DELETE FROM posts WHERE id == :id")
+    suspend fun deleteById(id: Long)
+
     @Query("DELETE FROM posts")
-    fun clear()
+    suspend fun clear()
 }

@@ -44,6 +44,7 @@ class AddNewPostFragment :
                     hideProgressDialog()
                     val entity = it.data as PostEntity
                     showSuccessAlert("Post added successfully")
+                    navigateUp()
                 }
                 is BaseUiSate.Error -> {
                     showErrorAlert(it.message)
