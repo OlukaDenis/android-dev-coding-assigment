@@ -15,11 +15,21 @@ interface ApiService {
     @GET("users/{id}")
     suspend fun fetchUserById(@Path("id") userId: Long): RemoteUser
 
+
     @GET("posts")
     suspend fun fetchPosts(): List<RemotePost>
 
     @POST("posts")
     suspend fun createPost(@Body request: HashMap<String, Any>): RemotePost
+
+    @DELETE("posts/{id}")
+    suspend fun deletePost(@Path("id") postId: Long)
+
+    @PATCH("posts/{id}")
+    suspend fun updatePost(
+        @Path("id") postId: Long,
+        @Body request: HashMap<String, Any>
+    ): RemotePost
 
     @GET("posts/{id}")
     suspend fun fetchPostById(@Path("id") postId: Long): RemotePost

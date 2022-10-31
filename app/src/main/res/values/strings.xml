@@ -37,4 +37,7 @@
     <string name="new_post">New Post</string>
     <string name="view">View</string>
     <string name="delete">Delete</string>
+    <string name="update_post">Update Post</string>
+    <string name="edit">Edit</string>
+    <string name="update">Update</string>
 </resources>

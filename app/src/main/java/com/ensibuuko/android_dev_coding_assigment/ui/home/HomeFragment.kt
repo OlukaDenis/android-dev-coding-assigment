@@ -7,9 +7,11 @@ import android.widget.PopupMenu
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.model.PostEntity
+import com.domain.model.UserEntity
 import com.ensibuuko.android_dev_coding_assigment.R
 import com.ensibuuko.android_dev_coding_assigment.databinding.FragmentHomeBinding
 import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseFragment
+import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseUiSate
 import com.ensibuuko.android_dev_coding_assigment.ui.home.adapters.PostListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -26,12 +28,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewModel.getLocalPosts()
 
         observeLocalPosts()
+        observeDeletePost()
         handleToolbar()
 
         binding.mtvWhatOnMind.setOnClickListener {
             navigate(
                 HomeFragmentDirections.actionHomeFragmentToAddNewPostFragment()
             )
+        }
+    }
+
+    private fun observeDeletePost() {
+        viewModel.deleteState.observe(viewLifecycleOwner) {
+            when(it) {
+                is BaseUiSate.Success<*> -> {
+                    hideProgressDialog()
+                    showSuccessAlert("Post deleted successfully")
+                }
+
+                is BaseUiSate.Error -> {
+                    hideProgressDialog()
+                    showErrorAlert(it.message)
+                }
+
+                is BaseUiSate.Loading -> {
+                    showProgressDialog()
+                }
+            }
         }
     }
 
@@ -79,12 +102,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val currentUser = viewModel.getUser
         if (entity.userId != currentUser.id) {
             menu.removeItem(R.id.action_delete_post)
+            menu.removeItem(R.id.action_edit_post)
         }
 
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.action_view_post -> {
                     Timber.d("View post")
+                }
+
+                R.id.action_edit_post -> {
+                    navigate(
+                        HomeFragmentDirections.actionHomeFragmentToAddNewPostFragment(
+                            true,
+                            entity
+                        )
+                    )
                 }
 
                 R.id.action_delete_post -> {

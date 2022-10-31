@@ -22,7 +22,18 @@
     <fragment
         android:id="@+id/addNewPostFragment"
         android:name="com.ensibuuko.android_dev_coding_assigment.ui.posts.add.AddNewPostFragment"
-        android:label="AddNewPostFragment" />
+        android:label="AddNewPostFragment" >
+
+        <argument
+            android:name="isUpdate"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="selectedPost"
+            app:argType="com.domain.model.PostEntity"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 
 </navigation>

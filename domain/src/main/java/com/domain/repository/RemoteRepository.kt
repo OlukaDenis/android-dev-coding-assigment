@@ -11,5 +11,9 @@ interface RemoteRepository {
 
     suspend fun createPost(data: HashMap<String, Any>): PostEntity
 
+    suspend fun updatePost(postId: Long, data: HashMap<String, Any>): PostEntity
+
+    suspend fun deletePost(postId: Long)
+
     suspend fun fetchPosts(): List<PostEntity>
 }

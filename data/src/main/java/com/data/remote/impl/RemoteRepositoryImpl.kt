@@ -47,6 +47,23 @@ class RemoteRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun updatePost(postId: Long, data: HashMap<String, Any>): PostEntity {
+        return try {
+            val response = apiService.updatePost(postId, data)
+            remotePostMapper.mapToDomain(response)
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun deletePost(postId: Long) {
+        return try {
+            apiService.deletePost(postId)
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
     override suspend fun fetchPosts(): List<PostEntity> {
         return try {
             val response = apiService.fetchPosts()
