@@ -11,7 +11,9 @@ class LocalPostMapper @Inject constructor(): BaseLocalMapper<LocalPost, PostEnti
             body = entity.body,
             title = entity.title,
             userId = entity.userId,
-            user = null
+            user = null,
+            createdAt = entity.createdAt,
+            updatedAt = entity.updatedAt
         )
     }
 
@@ -20,7 +22,9 @@ class LocalPostMapper @Inject constructor(): BaseLocalMapper<LocalPost, PostEnti
             id = entity.id ,
             body = entity.body,
             title = entity.title,
-            userId = entity.userId
+            userId = entity.userId,
+            createdAt = entity.createdAt,
+            updatedAt = entity.updatedAt
         )
     }
 }

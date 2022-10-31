@@ -34,6 +34,15 @@
                 app:layout_constraintStart_toEndOf="@id/civProfile"
                 app:layout_constraintTop_toTopOf="@id/civProfile" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/spacing_20"
+                android:layout_height="@dimen/spacing_20"
+                app:srcCompat="@drawable/ic_more_horiz"
+                android:tint="@color/gray_text"
+                app:tint="@color/gray_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mtvUsername"
                 android:layout_width="wrap_content"

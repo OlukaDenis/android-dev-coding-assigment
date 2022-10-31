@@ -9,5 +9,7 @@ data class LocalPost(
     val id: Long,
     val body: String,
     val title: String,
-    val userId: Long
+    val userId: Long,
+    val updatedAt: String,
+    val createdAt: String
 )

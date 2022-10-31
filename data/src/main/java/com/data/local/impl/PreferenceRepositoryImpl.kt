@@ -45,6 +45,7 @@ class PreferenceRepositoryImpl @Inject constructor(
         userPreferences.updateData { prefs ->
             prefs.toBuilder()
                 .setId(user.id)
+                .setName(user.name)
                 .setEmail(user.email)
                 .setUsername(user.username)
                 .setWebsite(user.website)

@@ -25,6 +25,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         observeLocalPosts()
         handleToolbar()
+
+        binding.mtvWhatOnMind.setOnClickListener {
+            navigate(
+                HomeFragmentDirections.actionHomeFragmentToAddNewPostFragment()
+            )
+        }
     }
 
     private fun handleToolbar() {

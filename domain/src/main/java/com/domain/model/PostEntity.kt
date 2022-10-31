@@ -5,5 +5,7 @@ data class PostEntity(
     val body: String,
     val title: String,
     val userId: Long,
-    var user: UserEntity?
+    var user: UserEntity?,
+    var updatedAt: String,
+    var createdAt: String
 )

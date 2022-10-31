@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PostDao: BaseDao<LocalPost> {
-    @Query("SELECT * FROM posts")
+    @Query("SELECT * FROM posts ORDER BY updatedAt DESC")
     fun get(): Flow<List<LocalPost>>
 
     @Query("SELECT * FROM posts WHERE id = :id")

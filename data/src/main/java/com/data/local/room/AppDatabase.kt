@@ -14,7 +14,7 @@ import com.domain.model.*
         LocalUser::class,
         LocalPost::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 

@@ -9,5 +9,7 @@ interface RemoteRepository {
 
     suspend fun fetchSingleUser(userId: Long): UserEntity
 
+    suspend fun createPost(data: HashMap<String, Any>): PostEntity
+
     suspend fun fetchPosts(): List<PostEntity>
 }

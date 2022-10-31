@@ -11,7 +11,9 @@ class RemotePostMapper @Inject constructor(): BaseRemoteMapper<RemotePost, PostE
             body = entity.body.orEmpty(),
             title = entity.title.orEmpty(),
             userId = entity.userId ?: 0L,
-            user = null
+            user = null,
+            createdAt = entity.createdAt.orEmpty(),
+            updatedAt = entity.updatedAt.orEmpty()
         )
     }
 }

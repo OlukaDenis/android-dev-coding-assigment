@@ -29,4 +29,10 @@
     <string name="name_required">Name required</string>
     <string name="invalid_password">Invalid password</string>
     <string name="home">Home</string>
+    <string name="what_is_on_your_mind">What is on your mind</string>
+    <string name="title">Title</string>
+    <string name="add_title">Add Title</string>
+    <string name="add_post_body">Add post body</string>
+    <string name="add_post">Add Post</string>
+    <string name="new_post">New Post</string>
 </resources>

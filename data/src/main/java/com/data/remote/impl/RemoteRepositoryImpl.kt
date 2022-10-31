@@ -38,6 +38,15 @@ class RemoteRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun createPost(data: HashMap<String, Any>): PostEntity {
+        return try {
+            val response = apiService.createPost(data)
+            remotePostMapper.mapToDomain(response)
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
     override suspend fun fetchPosts(): List<PostEntity> {
         return try {
             val response = apiService.fetchPosts()

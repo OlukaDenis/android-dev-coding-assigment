@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
     private var _userState = MutableLiveData<UserEntity>()
     val userState get() = _userState
 
-    val savedPassword = runBlocking {  getSavedPasswordUseCase().first() }
+    val savedPassword = runBlocking { getSavedPasswordUseCase().first() }
 
     fun getSavedUser() {
         viewModelScope.launch(dispatcher.main) {

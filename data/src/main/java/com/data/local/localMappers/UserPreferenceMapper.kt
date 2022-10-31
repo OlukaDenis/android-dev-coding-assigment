@@ -8,7 +8,7 @@ class UserPreferenceMapper @Inject constructor() {
     fun toDomain(entity: UserPreferences): UserEntity {
         return UserEntity(
             id = entity.id,
-            name = entity.username,
+            name = entity.name,
             email = entity.email,
             username = entity.username,
             phone = entity.phone,

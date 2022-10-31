@@ -23,13 +23,24 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
         viewModel.getSavedUser()
 
-        binding.mtvRegister.setOnClickListener {
-            navigate(
-                LoginFragmentDirections.actionLoginFragmentToSignupFragment()
-            )
+        with(binding) {
+            mtvRegister.setOnClickListener {
+                etEmail.setText("")
+                etPassword.setText("")
+                navigate(
+                    LoginFragmentDirections.actionLoginFragmentToSignupFragment()
+                )
+            }
+
+            btnLogin.setOnClickListener { validateFields() }
         }
 
-        binding.btnLogin.setOnClickListener { validateFields() }
+        viewModel.userState.observe(viewLifecycleOwner) { user ->
+            user?.let {
+                Timber.d("Saved user: $it")
+                binding.etEmail.setText(it.email)
+            }
+        }
 
         addTextWatchers()
     }
@@ -62,9 +73,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     private fun observeSavedUser(email: String, password: String) {
         viewModel.userState.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
-                Timber.e("No saved user")
+                showErrorAlert("User not found")
             } else {
-                Timber.d("Saved Password: ${viewModel.savedPassword}")
+
                 when {
                     email != it.email -> {
                         showErrorAlert("Wrong user email")
