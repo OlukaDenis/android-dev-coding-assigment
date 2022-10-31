@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CommentEntity(
-    val body: String,
+    var body: String,
     val email: String,
     val id: Long,
     val name: String,

@@ -5,7 +5,6 @@ import com.data.local.room.dao.*
 import com.domain.model.*
 import com.domain.repository.LocalRepository
 import kotlinx.coroutines.flow.*
-import timber.log.Timber
 import javax.inject.Inject
 
 class LocalRepositoryImpl @Inject constructor(
@@ -13,7 +12,8 @@ class LocalRepositoryImpl @Inject constructor(
     private val postDao: PostDao,
     private val commentDao: CommentDao,
     private val localPostMapper: LocalPostMapper,
-    private val localUserMapper: LocalUserMapper
+    private val localUserMapper: LocalUserMapper,
+    private val localCommentMapper: LocalCommentMapper
 ) : LocalRepository {
 
     override suspend fun saveUser(user: UserEntity) {
@@ -59,6 +59,30 @@ class LocalRepositoryImpl @Inject constructor(
                 localPostMapper.toDomain(it)
             }
          }
+    }
+
+    override suspend fun insertComment(entity: CommentEntity) {
+        commentDao.insert(localCommentMapper.toLocal(entity))
+    }
+
+    override suspend fun clearComments() {
+       commentDao.clear()
+    }
+
+    override suspend fun deleteCommentById(id: Long) {
+        commentDao.deleteById(id)
+    }
+
+    override fun getCommentsByPostId(postId: Long): Flow<List<CommentEntity>> {
+        return commentDao.getByPostId(postId).map { list ->
+            list.map {
+                localCommentMapper.toDomain(it)
+            }
+        }
+    }
+
+    override suspend fun updateComment(entity: CommentEntity) {
+        commentDao.update(localCommentMapper.toLocal(entity))
     }
 
 }

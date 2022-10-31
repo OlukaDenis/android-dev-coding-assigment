@@ -15,7 +15,8 @@ interface LocalRepository {
 
     suspend fun updateUser(user: UserEntity)
 
-    suspend fun insertPost(post: PostEntity)
+
+    suspend fun insertPost(entity: PostEntity)
 
     suspend fun clearPosts()
 
@@ -24,5 +25,16 @@ interface LocalRepository {
     suspend fun updatePost(post: PostEntity)
 
     fun getPosts(): Flow<List<PostEntity>>
+
+
+    suspend fun insertComment(entity: CommentEntity)
+
+    suspend fun clearComments()
+
+    suspend fun deleteCommentById(id: Long)
+
+    fun getCommentsByPostId(postId: Long): Flow<List<CommentEntity>>
+
+    suspend fun updateComment(entity: CommentEntity)
 
    }

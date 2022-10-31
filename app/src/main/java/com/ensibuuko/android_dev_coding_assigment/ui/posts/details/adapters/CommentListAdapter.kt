@@ -11,7 +11,7 @@ import com.domain.model.UserEntity
 import com.ensibuuko.android_dev_coding_assigment.databinding.LayoutLeftCommentItemBinding
 import com.ensibuuko.android_dev_coding_assigment.databinding.LayoutRightCommentItemBinding
 
-class CommentAdapter(
+class CommentListAdapter(
     private val currentUser: UserEntity,
     private val clickListener: CommentClickListener
 ) : ListAdapter<CommentEntity, RecyclerView.ViewHolder>(CommentDiffUtil) {

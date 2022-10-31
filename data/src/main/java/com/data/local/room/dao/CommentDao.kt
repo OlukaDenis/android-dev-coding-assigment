@@ -14,7 +14,7 @@ interface CommentDao : BaseDao<LocalComment> {
     @Query("SELECT * FROM comments WHERE id = :id")
     fun getById(id: Long): LocalComment
 
-    @Query("SELECT * FROM comments WHERE postId = :id ORDER BY updatedAt DESC")
+    @Query("SELECT * FROM comments WHERE postId = :id ORDER BY updatedAt ASC")
     fun getByPostId(id: Long): Flow<List<LocalComment>>
 
     @Query("DELETE FROM comments WHERE id == :id")
