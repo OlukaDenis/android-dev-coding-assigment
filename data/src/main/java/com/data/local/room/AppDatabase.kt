@@ -12,13 +12,15 @@ import com.domain.model.*
 @Database(
     entities = [
         LocalUser::class,
-        LocalPost::class
+        LocalPost::class,
+        LocalComment::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun postDao(): PostDao
+    abstract fun commentDao(): CommentDao
 }

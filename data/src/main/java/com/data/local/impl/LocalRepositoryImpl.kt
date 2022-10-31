@@ -11,6 +11,7 @@ import javax.inject.Inject
 class LocalRepositoryImpl @Inject constructor(
     private val userDao: UserDao,
     private val postDao: PostDao,
+    private val commentDao: CommentDao,
     private val localPostMapper: LocalPostMapper,
     private val localUserMapper: LocalUserMapper
 ) : LocalRepository {

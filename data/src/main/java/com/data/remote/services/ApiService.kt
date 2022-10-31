@@ -34,4 +34,20 @@ interface ApiService {
     @GET("posts/{id}")
     suspend fun fetchPostById(@Path("id") postId: Long): RemotePost
 
+
+    @POST("comments")
+    suspend fun createComment(@Body request: HashMap<String, Any>): RemoteComment
+
+    @DELETE("comments/{id}")
+    suspend fun deleteComment(@Path("id") id: Long)
+
+    @PATCH("comments/{id}")
+    suspend fun updateComment(
+        @Path("id") id: Long,
+        @Body request: HashMap<String, Any>
+    ): RemoteComment
+
+    @GET("posts/{id}/comments")
+    suspend fun fetchPostComments(@Path("id") id: Long): List<RemoteComment>
+
 }

@@ -36,4 +36,8 @@ class DatabaseModule {
     @Singleton
     @Provides
     internal fun providePostDao(database: AppDatabase) = database.postDao()
+
+    @Singleton
+    @Provides
+    internal fun provideCommentDao(database: AppDatabase) = database.commentDao()
 }

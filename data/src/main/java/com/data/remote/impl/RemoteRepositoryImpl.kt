@@ -13,7 +13,8 @@ class RemoteRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
     private val local: LocalRepository,
     private val remoteUserMapper: RemoteUserMapper,
-    private val remotePostMapper: RemotePostMapper
+    private val remotePostMapper: RemotePostMapper,
+    private val remoteCommentMapper: RemoteCommentMapper
 ) : RemoteRepository {
 
     override suspend fun createUser(data: HashMap<String, Any>): UserEntity {
@@ -70,6 +71,41 @@ class RemoteRepositoryImpl @Inject constructor(
             val result = response.map { remotePostMapper.mapToDomain(it) }
 
             result
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun createComment(request: HashMap<String, Any>): CommentEntity {
+        return try {
+            val response = apiService.createComment(request)
+            remoteCommentMapper.mapToDomain(response)
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun fetchPostComments(postId: Long): List<CommentEntity> {
+        return try {
+            val response = apiService.fetchPostComments(postId)
+            response.map { remoteCommentMapper.mapToDomain(it) }
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun updateComment(commentId: Long, data: HashMap<String, Any>): CommentEntity {
+        return try {
+            val response = apiService.updateComment(commentId, data)
+            remoteCommentMapper.mapToDomain(response)
+        } catch (throwable: Throwable) {
+            throw throwable
+        }
+    }
+
+    override suspend fun deleteComment(commentId: Long) {
+        return try {
+            apiService.deleteComment(commentId)
         } catch (throwable: Throwable) {
             throw throwable
         }

@@ -41,6 +41,7 @@ class PostListAdapter(
                 mtvBody.text = entity.body
                 mtvTitle.text = entity.title
 
+                root.setOnClickListener { clickListener.onItemClicked(entity) }
                 civMenu.setOnClickListener { v -> clickListener.onMenuClicked(v, entity) }
             }
         }

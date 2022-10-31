@@ -16,4 +16,12 @@ interface RemoteRepository {
     suspend fun deletePost(postId: Long)
 
     suspend fun fetchPosts(): List<PostEntity>
+
+    suspend fun createComment(request: HashMap<String, Any>): CommentEntity
+
+    suspend fun fetchPostComments(postId: Long): List<CommentEntity>
+
+    suspend fun updateComment(commentId: Long, data: HashMap<String, Any>): CommentEntity
+
+    suspend fun deleteComment(commentId: Long)
 }

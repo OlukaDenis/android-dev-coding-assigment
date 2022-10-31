@@ -21,9 +21,7 @@
                 android:id="@+id/btnBack"
                 android:layout_width="@dimen/spacing_50"
                 android:layout_height="@dimen/spacing_50"
-                app:cardElevation="@dimen/spacing_0"
                 android:visibility="gone"
-                app:contentPadding="@dimen/spacing_5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

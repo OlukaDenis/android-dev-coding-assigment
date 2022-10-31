@@ -76,7 +76,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         with(binding) {
             val listAdapter = PostListAdapter(object : PostListAdapter.PostClickListener {
                 override fun onItemClicked(entity: PostEntity) {
-
+                    goToPost(entity)
                 }
 
                 override fun onMenuClicked(view: View, entity: PostEntity) {
@@ -91,6 +91,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
             listAdapter.submitList(posts)
         }
+    }
+
+    private fun goToPost(entity: PostEntity) {
+        navigate(
+            HomeFragmentDirections.actionHomeFragmentToPostDetailFragment(entity)
+        )
     }
 
     private fun showPostOptions(view: View, entity: PostEntity) {
@@ -108,7 +114,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         popupMenu.setOnMenuItemClickListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.action_view_post -> {
-                    Timber.d("View post")
+                    goToPost(entity)
                 }
 
                 R.id.action_edit_post -> {
