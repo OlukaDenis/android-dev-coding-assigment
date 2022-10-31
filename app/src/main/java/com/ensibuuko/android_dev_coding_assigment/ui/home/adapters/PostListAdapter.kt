@@ -41,6 +41,8 @@ class PostListAdapter(
                 mtvBody.text = entity.body
                 mtvTitle.text = entity.title
 
+                mtvAuthor.setOnClickListener { clickListener.onProfileClicked(entity) }
+                civProfile.setOnClickListener { clickListener.onProfileClicked(entity) }
                 root.setOnClickListener { clickListener.onItemClicked(entity) }
                 civMenu.setOnClickListener { v -> clickListener.onMenuClicked(v, entity) }
             }
@@ -61,5 +63,6 @@ class PostListAdapter(
     interface PostClickListener {
         fun onItemClicked(entity: PostEntity)
         fun onMenuClicked(view: View, entity: PostEntity)
+        fun onProfileClicked(entity: PostEntity)
     }
 }

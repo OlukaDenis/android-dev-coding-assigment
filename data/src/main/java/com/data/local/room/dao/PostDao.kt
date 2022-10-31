@@ -11,6 +11,9 @@ interface PostDao: BaseDao<LocalPost> {
     @Query("SELECT * FROM posts ORDER BY updatedAt DESC")
     fun get(): Flow<List<LocalPost>>
 
+    @Query("SELECT * FROM posts WHERE userId = :id ORDER BY updatedAt DESC")
+    fun getPostsByUserId(id: Long): Flow<List<LocalPost>>
+
     @Query("SELECT * FROM posts WHERE id = :id")
     fun getById(id: Long): LocalPost
 

@@ -24,6 +24,8 @@ interface LocalRepository {
 
     suspend fun updatePost(post: PostEntity)
 
+    fun getPostsByUserId(id: Long): Flow<List<PostEntity>>
+
     fun getPosts(): Flow<List<PostEntity>>
 
 

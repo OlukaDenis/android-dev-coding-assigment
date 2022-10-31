@@ -39,7 +39,7 @@ class PostDetailFragment :
         }
 
         with(binding) {
-            etCommentBody.doOnTextChanged { text, start, before, count ->
+            etCommentBody.doOnTextChanged { text, _, _, _ ->
                 flSend.isVisible = text.toString().length > 3
             }
 
@@ -121,6 +121,9 @@ class PostDetailFragment :
             mtvBody.text = entity.body
             mtvPostTitle.text = entity.title
 
+            civProfile.setOnClickListener {
+                navigate(PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(args.selectedPost))
+            }
         }
     }
 

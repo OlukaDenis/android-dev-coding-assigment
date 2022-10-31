@@ -1,42 +1,61 @@
-package com.ensibuuko.android_dev_coding_assigment.ui.home
+package com.ensibuuko.android_dev_coding_assigment.ui.profile
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.model.PostEntity
-import com.domain.model.UserEntity
 import com.ensibuuko.android_dev_coding_assigment.R
-import com.ensibuuko.android_dev_coding_assigment.databinding.FragmentHomeBinding
+import com.ensibuuko.android_dev_coding_assigment.databinding.FragmentProfileBinding
 import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseFragment
 import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseUiSate
+import com.ensibuuko.android_dev_coding_assigment.ui.home.HomeFragmentDirections
 import com.ensibuuko.android_dev_coding_assigment.ui.home.adapters.PostListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val args: ProfileFragmentArgs by navArgs()
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.fetchRemotePosts()
-        viewModel.getLocalPosts()
+        viewModel.getLocalUserPosts(args.selectedPost.id)
 
-        observeLocalPosts()
         observeDeletePost()
-        handleToolbar()
+        observeLocalPosts()
 
-        binding.mtvWhatOnMind.setOnClickListener {
-            navigate(
-                HomeFragmentDirections.actionHomeFragmentToAddNewPostFragment()
-            )
+        handleToolbar()
+    }
+
+    private fun handleToolbar() {
+        with(binding.layoutToolbar) {
+            args.selectedPost.user?.let {
+                mtvTitle.text = if (it.id == viewModel.getUser.id) getString(R.string.my_profile) else "${it.name}'s Profile"
+            }
+
+            btnBack.isVisible = true
+            btnBack.setOnClickListener { navigateUp() }
         }
     }
+
+    private fun observeLocalPosts() {
+        viewModel.postListState.observe(viewLifecycleOwner) { list ->
+            list?.let {
+                populateUI(it)
+            }
+        }
+    }
+
 
     private fun observeDeletePost() {
         viewModel.deleteState.observe(viewLifecycleOwner) {
@@ -58,22 +77,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun handleToolbar() {
-        with(binding.layoutToolbar) {
-            mtvTitle.text = getString(R.string.home)
-        }
-    }
-
-    private fun observeLocalPosts() {
-        viewModel.postListState.observe(viewLifecycleOwner) { list ->
-            list?.let {
-                populateUI(it)
-            }
-        }
-    }
-
     private fun populateUI(posts: List<PostEntity>) {
         with(binding) {
+
+            args.selectedPost.user?.let {
+                mtvAuthor.text = it.name
+                mtvUsername.text = "@${it.username}"
+                mtvEmail.text = it.email
+                mtvPhone.text = it.phone
+            }
+
+
             val listAdapter = PostListAdapter(object : PostListAdapter.PostClickListener {
                 override fun onItemClicked(entity: PostEntity) {
                     goToPost(entity)
@@ -85,7 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
                 override fun onProfileClicked(entity: PostEntity) {
                     navigate(
-                        HomeFragmentDirections.actionHomeFragmentToProfileFragment(entity)
+                        ProfileFragmentDirections.actionProfileFragmentSelf(entity)
                     )
                 }
             })
@@ -101,7 +115,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun goToPost(entity: PostEntity) {
         navigate(
-            HomeFragmentDirections.actionHomeFragmentToPostDetailFragment(entity)
+            ProfileFragmentDirections.actionProfileFragmentToPostDetailFragment(entity)
         )
     }
 
@@ -125,7 +139,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
                 R.id.action_edit_post -> {
                     navigate(
-                        HomeFragmentDirections.actionHomeFragmentToAddNewPostFragment(
+                        ProfileFragmentDirections.actionProfileFragmentToAddNewPostFragment(
                             true,
                             entity
                         )
@@ -142,6 +156,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
         popupMenu.show()
     }
-
-
 }

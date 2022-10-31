@@ -15,7 +15,7 @@ import com.domain.model.*
         LocalPost::class,
         LocalComment::class
     ],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 

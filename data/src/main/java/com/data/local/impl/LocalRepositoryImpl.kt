@@ -53,6 +53,14 @@ class LocalRepositoryImpl @Inject constructor(
         postDao.update(localPostMapper.toLocal(post))
     }
 
+    override fun getPostsByUserId(id: Long): Flow<List<PostEntity>> {
+        return postDao.getPostsByUserId(id).map { list ->
+            list.map {
+                localPostMapper.toDomain(it)
+            }
+        }
+    }
+
     override fun getPosts(): Flow<List<PostEntity>>{
          return postDao.get().map { list ->
             list.map {

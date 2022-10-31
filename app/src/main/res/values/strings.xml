@@ -41,4 +41,6 @@
     <string name="edit">Edit</string>
     <string name="update">Update</string>
     <string name="write_comment">Write comment...</string>
+    <string name="posts">Posts</string>
+    <string name="my_profile">My Profile</string>
 </resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_main_toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/civProfile"
+                        android:layout_width="@dimen/spacing_100"
+                        android:layout_height="@dimen/spacing_100"
+                        android:src="@drawable/user"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvAuthor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:textSize="@dimen/font_25"
+                        app:layout_constraintStart_toEndOf="@id/civProfile"
+                        app:layout_constraintTop_toTopOf="@id/civProfile"
+                        tools:text="Denis Oluka" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/font_16"
+                        app:layout_constraintStart_toEndOf="@id/civProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/mtvAuthor"
+                        tools:text="deni-oluka" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/mtvUsername"
+                        app:layout_constraintTop_toBottomOf="@id/mtvUsername"
+                        tools:text="olukadeno@gmail.com" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvPhone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/mtvUsername"
+                        app:layout_constraintTop_toBottomOf="@id/mtvEmail"
+                        tools:text="0773047940" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16"
+                    android:textSize="@dimen/font_18"
+                    app:layout_constraintStart_toStartOf="@id/mtvUsername"
+                    app:layout_constraintTop_toBottomOf="@id/mtvEmail"
+                    android:text="@string/posts" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPosts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>
