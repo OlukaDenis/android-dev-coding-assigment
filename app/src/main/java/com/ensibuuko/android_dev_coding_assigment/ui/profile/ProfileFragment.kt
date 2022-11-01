@@ -29,7 +29,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getLocalUserPosts(args.selectedPost.id)
+        viewModel.getLocalUserPosts(args.selectedUser.id)
 
         observeDeletePost()
         observeLocalPosts()
@@ -39,7 +39,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
 
     private fun handleToolbar() {
         with(binding.layoutToolbar) {
-            args.selectedPost.user?.let {
+            args.selectedUser.let {
                 mtvTitle.text = if (it.id == viewModel.getUser.id) getString(R.string.my_profile) else "${it.name}'s Profile"
             }
 
@@ -80,7 +80,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     private fun populateUI(posts: List<PostEntity>) {
         with(binding) {
 
-            args.selectedPost.user?.let {
+            args.selectedUser.let {
                 mtvAuthor.text = it.name
                 mtvUsername.text = "@${it.username}"
                 mtvEmail.text = it.email
@@ -98,9 +98,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                 }
 
                 override fun onProfileClicked(entity: PostEntity) {
-                    navigate(
-                        ProfileFragmentDirections.actionProfileFragmentSelf(entity)
-                    )
+                    entity.user?.let {
+                        navigate(
+                            ProfileFragmentDirections.actionProfileFragmentSelf(it)
+                        )
+                    }
                 }
             })
 

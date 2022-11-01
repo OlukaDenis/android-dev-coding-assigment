@@ -75,9 +75,7 @@
         android:name="com.ensibuuko.android_dev_coding_assigment.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
-        <argument
-            android:name="selectedPost"
-            app:argType="com.domain.model.PostEntity" />
+
         <action
             android:id="@+id/action_profileFragment_self"
             app:destination="@id/profileFragment"
@@ -95,6 +93,9 @@
         <action
             android:id="@+id/action_profileFragment_to_addNewPostFragment"
             app:destination="@id/addNewPostFragment" />
+        <argument
+            android:name="selectedUser"
+            app:argType="com.domain.model.UserEntity" />
     </fragment>
 
 

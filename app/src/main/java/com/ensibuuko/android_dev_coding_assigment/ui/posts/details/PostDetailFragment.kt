@@ -40,7 +40,7 @@ class PostDetailFragment :
 
         with(binding) {
             etCommentBody.doOnTextChanged { text, _, _, _ ->
-                flSend.isVisible = text.toString().length > 3
+                flSend.isVisible = text.toString().length >= 2
             }
 
             flSend.setOnClickListener { validateComment() }
@@ -116,14 +116,14 @@ class PostDetailFragment :
             entity.user?.let {
                 mtvUsername.text = "@${it.username}"
                 mtvAuthor.text = it.name
+
+                civPostProfile.setOnClickListener { v ->
+                    navigate(PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(it))
+                }
             }
 
             mtvBody.text = entity.body
             mtvPostTitle.text = entity.title
-
-            civProfile.setOnClickListener {
-                navigate(PostDetailFragmentDirections.actionPostDetailFragmentToProfileFragment(args.selectedPost))
-            }
         }
     }
 

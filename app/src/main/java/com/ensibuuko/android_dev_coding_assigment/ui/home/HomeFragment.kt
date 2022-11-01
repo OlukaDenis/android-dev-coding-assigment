@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.domain.model.PostEntity
@@ -14,7 +15,6 @@ import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseFragment
 import com.ensibuuko.android_dev_coding_assigment.ui.base.BaseUiSate
 import com.ensibuuko.android_dev_coding_assigment.ui.home.adapters.PostListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -61,7 +61,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun handleToolbar() {
         with(binding.layoutToolbar) {
             mtvTitle.text = getString(R.string.home)
+            civProfile.isVisible = true
+            civProfile.setOnClickListener { goToProfile(viewModel.getUser) }
         }
+    }
+
+    private fun goToProfile(entity: UserEntity) {
+        navigate(
+            HomeFragmentDirections.actionHomeFragmentToProfileFragment(entity)
+        )
     }
 
     private fun observeLocalPosts() {
@@ -84,9 +92,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
 
                 override fun onProfileClicked(entity: PostEntity) {
-                    navigate(
-                        HomeFragmentDirections.actionHomeFragmentToProfileFragment(entity)
-                    )
+                    entity.user?.let {
+                        goToProfile(it)
+                    }
                 }
             })
 
