@@ -7,10 +7,8 @@ import com.domain.model.sealed.Resource
 import com.domain.repository.LocalRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
-import com.domain.usecases.users.FetchSingleUserUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import timber.log.Timber
 import javax.inject.Inject
 
 class FetchRemoteCommentsUseCase @Inject constructor(
@@ -18,7 +16,6 @@ class FetchRemoteCommentsUseCase @Inject constructor(
     private val local: LocalRepository,
     private val remote: RemoteRepository,
     private val utilRepository: UtilRepository,
-    private val fetchSingleUserUseCase: FetchSingleUserUseCase
 ) : BaseFlowUseCase<Long, Resource<List<CommentEntity>>>(dispatcher) {
     override fun run(param: Long?): Flow<Resource<List<CommentEntity>>> = flow {
         emit(Resource.Loading)

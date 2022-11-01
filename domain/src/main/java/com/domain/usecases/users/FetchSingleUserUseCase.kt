@@ -5,14 +5,10 @@ import com.domain.dispacher.AppDispatcher
 import com.domain.model.UserEntity
 import com.domain.model.sealed.Resource
 import com.domain.repository.LocalRepository
-import com.domain.repository.PreferenceRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
-import java.lang.Exception
 import javax.inject.Inject
 
 class FetchSingleUserUseCase @Inject constructor(

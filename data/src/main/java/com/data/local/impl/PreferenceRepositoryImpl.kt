@@ -23,24 +23,6 @@ class PreferenceRepositoryImpl @Inject constructor(
     private val userPrefMapper: UserPreferenceMapper
 ) : PreferenceRepository {
 
-    override fun getAppPreferences(): Flow<AppPreference> = datastorePreference.data.map {
-        val dark = it[IS_DARK_MODE] ?: false
-        val sysDefault = it[IS_SYSTEM_DEFAULT] ?: false
-        AppPreference(dark, sysDefault)
-    }
-
-    override suspend fun updateDarkModeTheme(isDarkMode: Boolean) {
-        datastorePreference.edit {
-            it[IS_DARK_MODE] = isDarkMode
-        }
-    }
-
-    override suspend fun updateSystemDefaultTheme(isDefaultTheme: Boolean) {
-        datastorePreference.edit {
-            it[IS_SYSTEM_DEFAULT] = isDefaultTheme
-        }
-    }
-
     override suspend fun saveUser(user: UserEntity) {
         userPreferences.updateData { prefs ->
             prefs.toBuilder()

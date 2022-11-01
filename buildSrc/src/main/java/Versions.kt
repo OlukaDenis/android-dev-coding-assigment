@@ -31,12 +31,12 @@ object Versions {
 
     object Test {
         const val CORE = "1.2.0"
-        const val JUNIT = "4.12"
+        const val JUNIT = "4.13.2"
         const val JUNIT_EXT = "1.1.3"
         const val ESPRESSO = "3.4.0"
         const val JACOCO = "0.8.6"
         const val JACOCO_ANDROID = "0.1.5"
-        const val MOCKK = "1.12.0"
+        const val MOCKK = "1.13.2"
         const val TRUTHY = "1.1.3"
         const val ROBOELECTRIC = "4.4"
         const val CORE_TESTING = "2.1.0"
