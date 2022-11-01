@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 class RemoteRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    private val local: LocalRepository,
     private val remoteUserMapper: RemoteUserMapper,
     private val remotePostMapper: RemotePostMapper,
     private val remoteCommentMapper: RemoteCommentMapper
@@ -31,7 +30,6 @@ class RemoteRepositoryImpl @Inject constructor(
             val response = apiService.fetchUserById(userId)
 
             val user = remoteUserMapper.mapToDomain(response)
-            local.updateUser(user)
 
             user
         } catch (throwable: Throwable) {
