@@ -76,6 +76,7 @@ dependencies {
     implementation(Dependencies.Network.GSON_CONVERTER)
 
     testImplementation(Dependencies.Kotlin.COROUTINE_TEST)
+    androidTestImplementation(Dependencies.Kotlin.COROUTINE_TEST)
     implementation(Dependencies.Kotlin.COROUTINE_ANDROID)
 
     implementation(Dependencies.Hilt.HILT_WORKER)
@@ -83,7 +84,14 @@ dependencies {
     kapt(Dependencies.Hilt.HILT_ANDROID_COMPILER)
     kapt(Dependencies.Hilt.HILT_COMPILER)
 
+    testImplementation(Dependencies.Test.TRUTHY)
     testImplementation(Dependencies.Test.JUNIT)
+    testImplementation(Dependencies.Test.MOCKK)
+    testImplementation(Dependencies.Test.ROBOELECTRIC)
+    testImplementation(Dependencies.Test.CORE_TESTING)
     androidTestImplementation(Dependencies.Test.JUNIT_EXT)
     androidTestImplementation(Dependencies.Test.ESPRESSO)
+    androidTestImplementation(Dependencies.Test.MOCKK)
+    androidTestImplementation(Dependencies.Test.TRUTHY)
+    androidTestImplementation(Dependencies.Test.CORE_TESTING)
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Dev-Coding-Assigment</string>
+    <string name="app_name">Ensibuuko Forum</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
