@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="0.5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/spacing_50"
+                android:layout_height="@dimen/spacing_50"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/civBack"
+                    android:layout_width="@dimen/spacing_40"
+                    android:layout_height="@dimen/spacing_40"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/spacing_8"
+                    app:tint="?colorSecondary"
+                    android:tint="?colorSecondary"
+                    app:srcCompat="@drawable/ic_arrow_back" />
+
+            </FrameLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="@dimen/spacing_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnBack"
+                android:textSize="@dimen/font_18"
+                tools:text="Title"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/civProfile"
+                android:layout_width="@dimen/spacing_40"
+                android:layout_height="@dimen/spacing_40"
+                android:src="@drawable/user"
+                android:visibility="gone"
+                android:layout_marginEnd="@dimen/spacing_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

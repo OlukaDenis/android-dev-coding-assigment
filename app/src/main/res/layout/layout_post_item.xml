@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/spacing_8"
+    app:cardCornerRadius="@dimen/spacing_8"
+    app:cardElevation="@dimen/spacing_0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_16">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/civProfile"
+                android:layout_width="@dimen/spacing_40"
+                android:layout_height="@dimen/spacing_40"
+                android:src="@drawable/user"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Denis Oluka"
+                android:layout_marginStart="@dimen/spacing_16"
+                app:layout_constraintStart_toEndOf="@id/civProfile"
+                app:layout_constraintTop_toTopOf="@id/civProfile" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/civMenu"
+                android:layout_width="@dimen/spacing_20"
+                android:layout_height="@dimen/spacing_20"
+                app:srcCompat="@drawable/ic_more_horiz"
+                android:tint="@color/gray_text"
+                app:tint="@color/gray_text"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="deni-oluka"
+                android:textSize="@dimen/font_14"
+                android:textColor="@color/gray_text"
+                android:layout_marginStart="@dimen/spacing_16"
+                app:layout_constraintStart_toEndOf="@id/civProfile"
+                app:layout_constraintTop_toBottomOf="@+id/mtvAuthor"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Kotlin DSL"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/spacing_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/civProfile"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtvBody"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="Testing this body of the pos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mtvTitle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

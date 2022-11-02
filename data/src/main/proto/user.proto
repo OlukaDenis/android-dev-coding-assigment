@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.data";
+option java_multiple_files = true;
+
+message UserPreferences {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+    string username = 4;
+    string phone = 5;
+    string website = 6;
+}

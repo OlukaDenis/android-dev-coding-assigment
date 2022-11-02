@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.posts.details.PostDetailFragment">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_main_toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/clComment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/spacing_16">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/civPostProfile"
+                        android:layout_width="@dimen/spacing_40"
+                        android:layout_height="@dimen/spacing_40"
+                        android:src="@drawable/user"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvAuthor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        app:layout_constraintStart_toEndOf="@id/civPostProfile"
+                        app:layout_constraintTop_toTopOf="@id/civPostProfile"
+                        tools:text="Denis Oluka" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvUsername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@id/civPostProfile"
+                        app:layout_constraintTop_toBottomOf="@+id/mtvAuthor"
+                        tools:text="deni-oluka" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvPostTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/civPostProfile"
+                        tools:text="Kotlin DSL" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtvBody"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/mtvPostTitle"
+                        tools:text="Testing this body of the pos" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider_color" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvComments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/layout_left_comment_item"
+                    android:layout_margin="@dimen/spacing_16"/>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilCommentBody"
+                style="@style/AppTextInputStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_8"
+                app:boxStrokeColor="?colorOnPrimary"
+                app:boxStrokeWidth="@dimen/spacing_0"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toStartOf="@id/flSend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCommentBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gray_rounded_bg"
+                    android:hint="@string/write_comment" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <FrameLayout
+                android:id="@+id/flSend"
+                android:layout_width="@dimen/spacing_50"
+                android:layout_height="@dimen/spacing_50"
+                android:background="@drawable/secondary_circle_bg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/civBack"
+                    android:layout_width="@dimen/spacing_40"
+                    android:layout_height="@dimen/spacing_40"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/spacing_8"
+                    android:tint="?colorOnSecondary"
+                    app:srcCompat="@drawable/ic_send"
+                    app:tint="?colorOnSecondary" />
+
+            </FrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

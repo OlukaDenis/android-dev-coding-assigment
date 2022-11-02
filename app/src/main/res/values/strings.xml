@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android-Dev-Coding-Assigment</string>
+    <string name="app_name">Ensibuuko Forum</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -9,4 +9,38 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">Error</string>
+    <string name="info">Info</string>
+    <string name="success">Success</string>
+    <string name="password">Password</string>
+    <string name="log_in">Login</string>
+    <string name="reset_password"> <font color="#ffa31a"><b> Forgot password? </b></font></string>
+    <string name="not_registered_register_now">Not registered? <font color="#ffa31a"><b> Register now</b></font></string>
+    <string name="registered_login_now">
+        Already Registered? <font color="#ffa31a"><b> Login now</b> </font>
+    </string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_phone">Invalid phone</string>
+    <string name="name_required">Name required</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="home">Home</string>
+    <string name="what_is_on_your_mind">What is on your mind</string>
+    <string name="title">Title</string>
+    <string name="add_title">Add Title</string>
+    <string name="add_post_body">Add post body</string>
+    <string name="add_post">Add Post</string>
+    <string name="new_post">New Post</string>
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
+    <string name="update_post">Update Post</string>
+    <string name="edit">Edit</string>
+    <string name="update">Update</string>
+    <string name="write_comment">Write comment...</string>
+    <string name="posts">Posts</string>
+    <string name="my_profile">My Profile</string>
 </resources>
