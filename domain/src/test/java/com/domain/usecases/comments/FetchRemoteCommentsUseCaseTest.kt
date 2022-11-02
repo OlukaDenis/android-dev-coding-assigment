@@ -1,18 +1,17 @@
-package com.domain.usecases.posts
+package com.domain.usecases.comments
 
 import com.domain.dispacher.AppDispatcher
-import com.domain.model.PostEntity
 import com.domain.model.sealed.Resource
 import com.domain.repository.FakeLocalRepository
-import com.domain.repository.FakePreferenceRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
-import com.domain.utils.dummyPost
-import com.domain.utils.dummyUser
+import com.domain.utils.getDummyComments
+import com.domain.utils.getDummyPosts
 import com.google.common.truth.Truth
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -21,55 +20,50 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class AddPostUseCaseTest {
+class FetchRemoteCommentsUseCaseTest {
+
     @MockK
     lateinit var remote: RemoteRepository
 
     @MockK
     lateinit var utilRepository: UtilRepository
 
+    private lateinit var fakeLocalRepository: FakeLocalRepository
+    private lateinit var fetchRemoteCommentsUseCase: FetchRemoteCommentsUseCase
+
     @MockK
     lateinit var dispatcher: AppDispatcher
-
-    private lateinit var fakeLocalRepository: FakeLocalRepository
-    private lateinit var fakePreferenceRepository: FakePreferenceRepository
-    private lateinit var addPostUseCase: AddPostUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
 
         fakeLocalRepository = FakeLocalRepository()
-        fakePreferenceRepository = FakePreferenceRepository()
-
-        addPostUseCase = AddPostUseCase(
-            dispatcher,
-            remote,
-            fakeLocalRepository,
-            fakePreferenceRepository,
-            utilRepository
-        )
+        fetchRemoteCommentsUseCase =
+            FetchRemoteCommentsUseCase(dispatcher, fakeLocalRepository, remote, utilRepository)
     }
 
     @Test
-    fun `Add a new post success`() = runBlocking {
+    fun `Fetch remote post comments list success`() = runBlocking {
         // Given
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
-        val post = dummyPost
-        coEvery { remote.createPost(any()) } returns post
+        coEvery { remote.fetchPostComments(any()) } returns getDummyComments()
 
         // When
-        val param = AddPostUseCase.Param(post.title, post.body)
-        val result = addPostUseCase(param)
+        val result = fetchRemoteCommentsUseCase(1)
 
         // Then
         result.collect {
-            coEvery { remote.createPost(any()) }
-
             when(it) {
                 is Resource.Loading -> {}
                 is Resource.Success -> {
-                    assertThat(it.data.title).isEqualTo("Testing")
+                    coVerify { remote.fetchPostComments(1) }
+
+                    assertThat(it.data).isNotNull()
+                    assertThat(it.data).isNotEmpty()
+
+                    val savedComments = fakeLocalRepository.getCommentsByPostId(1).first()
+                    assertThat(savedComments).isNotEmpty()
                 }
                 is Resource.Error -> {}
             }

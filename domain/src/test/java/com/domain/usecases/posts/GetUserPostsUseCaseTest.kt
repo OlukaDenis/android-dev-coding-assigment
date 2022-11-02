@@ -1,18 +1,16 @@
 package com.domain.usecases.posts
 
 import com.domain.dispacher.AppDispatcher
-import com.domain.model.PostEntity
 import com.domain.model.sealed.Resource
 import com.domain.repository.FakeLocalRepository
 import com.domain.repository.FakePreferenceRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
-import com.domain.utils.dummyPost
-import com.domain.utils.dummyUser
-import com.google.common.truth.Truth
+import com.domain.utils.getDummyPosts
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -21,19 +19,14 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
-class AddPostUseCaseTest {
-    @MockK
-    lateinit var remote: RemoteRepository
-
-    @MockK
-    lateinit var utilRepository: UtilRepository
+class GetUserPostsUseCaseTest {
 
     @MockK
     lateinit var dispatcher: AppDispatcher
 
     private lateinit var fakeLocalRepository: FakeLocalRepository
     private lateinit var fakePreferenceRepository: FakePreferenceRepository
-    private lateinit var addPostUseCase: AddPostUseCase
+    private lateinit var getUserPostsUseCase: GetUserPostsUseCase
 
     @Before
     fun setUp() {
@@ -41,38 +34,22 @@ class AddPostUseCaseTest {
 
         fakeLocalRepository = FakeLocalRepository()
         fakePreferenceRepository = FakePreferenceRepository()
-
-        addPostUseCase = AddPostUseCase(
-            dispatcher,
-            remote,
-            fakeLocalRepository,
-            fakePreferenceRepository,
-            utilRepository
-        )
+        getUserPostsUseCase = GetUserPostsUseCase(dispatcher, fakeLocalRepository, fakePreferenceRepository)
     }
 
     @Test
-    fun `Add a new post success`() = runBlocking {
+    fun `Fetch local user post list success`() = runBlocking {
         // Given
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
-        val post = dummyPost
-        coEvery { remote.createPost(any()) } returns post
+        getDummyPosts().forEach {
+            fakeLocalRepository.insertPost(it)
+        }
 
         // When
-        val param = AddPostUseCase.Param(post.title, post.body)
-        val result = addPostUseCase(param)
+        val result = getUserPostsUseCase(10).first()
 
         // Then
-        result.collect {
-            coEvery { remote.createPost(any()) }
-
-            when(it) {
-                is Resource.Loading -> {}
-                is Resource.Success -> {
-                    assertThat(it.data.title).isEqualTo("Testing")
-                }
-                is Resource.Error -> {}
-            }
-        }
+        assertThat(result).isNotNull()
+        assertThat(result).isNotEmpty()
     }
 }

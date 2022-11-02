@@ -8,6 +8,7 @@ import com.domain.repository.FakeLocalRepository
 import com.domain.repository.FakePreferenceRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
+import com.domain.utils.dummyUser
 import com.domain.utils.getDummyUsers
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
@@ -58,8 +59,8 @@ class CreateUserUseCaseTest {
     fun `Create user success`() = runBlocking {
 
         // Given
-        val user = UserEntity(1L,"Test", "test@gmail.com", "90898172", "1234", "")
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
+        val user = dummyUser
         coEvery { remote.createUser(any()) } returns user
         val param = CreateUserUseCase.Param(user.name, user.email, user.phone, user.phone)
 
@@ -91,7 +92,7 @@ class CreateUserUseCaseTest {
     fun `Create user failure`() = runBlocking {
 
         // Given
-        val user = UserEntity(1L,"Test", "test@gmail.com", "90898172", "1234", "")
+        val user = dummyUser
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
         coEvery { remote.createUser(any()) } throws IOException()
         coEvery { utilRepository.getNetworkError(any()) } returns "IO exception"

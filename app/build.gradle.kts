@@ -31,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         viewBinding = true
@@ -52,15 +52,17 @@ dependencies {
     implementation(Dependencies.AndroidX.CONSTRAINT_LAYOUT)
     implementation(Dependencies.AndroidX.FRAGMENT_KTX)
     implementation(Dependencies.AndroidX.ACTIVITY_KTX)
-    implementation(Dependencies.AndroidX.LIVEDATA_KTX)
-    implementation(Dependencies.AndroidX.VIEWMODEL_KTX)
     implementation(Dependencies.AndroidX.PAGING)
     implementation(Dependencies.AndroidX.ROOM_PAGING)
     implementation(Dependencies.AndroidX.ANNOTATION)
     implementation(Dependencies.AndroidX.LEGACY_SUPPPORT)
     implementation(Dependencies.AndroidX.WORK_MANAGER_KTX)
     implementation(Dependencies.AndroidX.SPLASHSCREEN)
+
+    implementation(Dependencies.AndroidX.VIEWMODEL_KTX)
+    implementation(Dependencies.AndroidX.LIVEDATA_KTX)
     kapt(Dependencies.AndroidX.LIFECYCLE_PROCESSOR)
+    testImplementation(Dependencies.AndroidX.LIFECYCLE_TESTING)
 
     implementation(Dependencies.Navigation.NAV_UI)
     implementation(Dependencies.Navigation.NAV_FRAGMENT)

@@ -3,6 +3,7 @@ package com.domain.usecases.users
 import com.domain.dispacher.AppDispatcher
 import com.domain.model.UserEntity
 import com.domain.repository.FakeLocalRepository
+import com.domain.utils.dummyUser
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -36,9 +37,7 @@ class GetLocalSingleUserUseCaseTest {
         // Given
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
 
-        fakeLocalRepository.saveUser(
-            UserEntity(10, "Test", "test@gmail.com", "test", "097865", "")
-        )
+        fakeLocalRepository.saveUser(dummyUser)
 
         // When
         val result = getLocalSingleUserUseCase(10).first()

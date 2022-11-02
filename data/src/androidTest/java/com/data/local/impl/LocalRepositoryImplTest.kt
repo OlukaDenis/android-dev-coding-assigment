@@ -3,13 +3,16 @@ package com.data.local.impl
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
-import com.makao.data.local.room.dao.UtilityDao
-import com.makao.data.local.di.DatabaseModule
-import com.makao.data.local.localMappers.LocalUserMapper
-import com.makao.data.local.room.AppDatabase
-import com.makao.data.local.room.dao.*
-import com.makao.domain.model.User
-import com.makao.domain.repository.LocalRepository
+import com.data.local.di.DatabaseModule
+import com.data.local.localMappers.LocalCommentMapper
+import com.data.local.localMappers.LocalPostMapper
+import com.data.local.localMappers.LocalUserMapper
+import com.data.local.room.AppDatabase
+import com.data.local.room.dao.CommentDao
+import com.data.local.room.dao.PostDao
+import com.data.local.room.dao.UserDao
+import com.data.utils.dummyUser
+import com.domain.repository.LocalRepository
 import com.google.common.truth.Truth.assertThat
 import dagger.Module
 import dagger.Provides
@@ -20,12 +23,10 @@ import dagger.hilt.android.testing.UninstallModules
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @HiltAndroidTest
 @UninstallModules(DatabaseModule::class)
@@ -39,41 +40,15 @@ class LocalRepositoryImplTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @Inject
-    lateinit var database: AppDatabase
+    @Inject lateinit var localUserMapper: LocalUserMapper
+    @Inject lateinit var localCommentMapper: LocalCommentMapper
+    @Inject lateinit var localPostMapper: LocalPostMapper
 
-    @Inject
-    lateinit var beneficiaryDao: BeneficiaryDao
+    @Inject lateinit var postDao: PostDao
 
-    @Inject
-    lateinit var contactDao: ContactDao
+    @Inject lateinit var userDao: UserDao
 
-    @Inject
-    lateinit var userDao: UserDao
-
-    @Inject
-    lateinit var searchHistoryDao: SearchHistoryDao
-
-    @Inject
-    lateinit var addressDao: DeliveryAddressDao
-
-    @Inject
-    lateinit var utilityDao: UtilityDao
-
-    @Inject
-    lateinit var checkoutDao: CheckoutDao
-
-    @Inject
-    lateinit var categoryDao: CategoryDao
-
-    @Inject
-    lateinit var localAddressMapper: LocalAddressMapper
-
-    @Inject
-    lateinit var localUserMapper: LocalUserMapper
-
-    @Inject
-    lateinit var localCheckoutMapper: LocalCheckoutMapper
+    @Inject lateinit var commentDao: CommentDao
 
     @Module
     @InstallIn(SingletonComponent::class)
@@ -89,103 +64,40 @@ class LocalRepositoryImplTest {
         }
 
         @Provides
-        fun provideBeneficiaryDao(database: AppDatabase) = database.beneficiaryDao()
-
-
-        @Provides
-        fun provideContactDao(database: AppDatabase) = database.contactDao()
+        fun providePostDao(database: AppDatabase) = database.postDao()
 
         @Provides
         fun provideUserDao(database: AppDatabase) = database.userDao()
 
         @Provides
-        @Singleton
-        fun provideSearchHistoryDao(database: AppDatabase) = database.searchHistoryDao()
-
-        @Provides
-        fun providesCategoryDao(database: AppDatabase) = database.categoryDao()
-
-        @Provides
-        fun provideAddressDao(database: AppDatabase) = database.addressDao()
-
-        @Provides
-        fun provideUtilityDao(database: AppDatabase) = database.utilityDao()
-
-        @Provides
-        fun provideCheckout(database: AppDatabase) = database.checkoutDao()
+        fun provideCommentDao(database: AppDatabase) = database.commentDao()
     }
-
 
     @Before
     fun setUp() {
         hiltRule.inject()
-
         localRepository = LocalRepositoryImpl(
-            beneficiaryDao,
-            contactDao,
             userDao,
-            searchHistoryDao,
-            addressDao,
-            utilityDao,
-            checkoutDao,
-            categoryDao,
-            localAddressMapper,
+            postDao,
+            commentDao,
+            localPostMapper,
             localUserMapper,
-            localCheckoutMapper
+            localCommentMapper
         )
     }
 
     @Test
-    fun test_getSavedUser_failure() = runBlocking {
+    fun insertUser_findUser() = runBlocking {
         // Given
 
         // When
-        val savedUser = localRepository.getUser()
-
-        // Then
-       assertThat(savedUser).isNotNull()
-
-    }
-
-    @Test
-    fun test_getSavedUser_success() = runBlocking {
-        // Given
-        val user = User(
-            id = "782",
-            activationKey = "",
-            dob = "",
-            email = "email",
-            genderId = "",
-            enabled = "",
-            firstName = "",
-            lastName = "",
-            middleName = "",
-            password = "",
-            phone = "",
-            pin = "",
-            username = "denis",
-            isLoyalty = ""
-        )
-
-        // When
-        localRepository.saveUserToDb(user)
-        val savedUser = localRepository.getUser()
+        userDao.insert(dummyUser)
+        val savedUser = userDao.getById(10).first()
 
         // Then
         assertThat(savedUser).isNotNull()
+        assertThat(savedUser?.email).isEqualTo("test@gmail.com")
 
-    }
-
-    @Test
-    fun test_savedCheckoutModel_failure() = runBlocking {
-        // Given
-
-        // When
-        val checkout = localRepository.getCheckoutModel().first()
-
-        // Then
-        println("Checkout: $checkout")
-        assertThat(checkout).isEmpty()
     }
 
 }

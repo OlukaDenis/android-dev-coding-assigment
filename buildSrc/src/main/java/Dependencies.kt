@@ -39,13 +39,14 @@ object Dependencies {
         const val VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.LIFECYCLE_KTX}"
         const val LIVEDATA_KTX = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.LIFECYCLE_KTX}"
         const val LIFECYCLE_PROCESSOR = "androidx.lifecycle:lifecycle-compiler:${Versions.AndroidX.LIFECYCLE_KTX}"
+        const val LIFECYCLE_TESTING = "androidx.lifecycle:lifecycle-runtime-testing:${Versions.AndroidX.LIFECYCLE_KTX}"
         const val WORK_MANAGER_KTX = "androidx.work:work-runtime-ktx:${Versions.AndroidX.WORK_MANAGER_KTX}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.CONSTRAINT_LAYOUT}"
         const val VIEW_PAGER = "androidx.viewpager2:viewpager2:${Versions.AndroidX.VIEW_PAGER}"
         const val DATA_STORE = "androidx.datastore:datastore:${Versions.AndroidX.DATA_STORE}"
         const val DATA_STORE_PREFERENCES = "androidx.datastore:datastore-preferences:${Versions.AndroidX.DATA_STORE}"
         const val PAGING = "androidx.paging:paging-runtime:${Versions.AndroidX.PAGING}"
-        const val ROOM_PAGING = "androidx.room:room-paging:${Versions.AndroidX.ROOM_PAGING}"
+        const val ROOM_PAGING = "androidx.room:room-paging:${Versions.AndroidX.ROOM}"
         const val EMOJI = "androidx.emoji:emoji:${Versions.AndroidX.EMOJI}"
         const val EMOJI_BUNDLED = "androidx.emoji:emoji-bundled:${Versions.AndroidX.EMOJI_COMPAT}"
         const val EMOJI_COMPAT = "androidx.emoji:emoji-appcompat:${Versions.AndroidX.EMOJI_COMPAT}"
@@ -81,8 +82,6 @@ object Dependencies {
         const val JACOCO = "org.jacoco:org.jacoco.core:${Versions.Test.JACOCO}"
         const val TRUTHY = "com.google.truth:truth:${Versions.Test.TRUTHY}"
         const val MOCKK = "io.mockk:mockk:${Versions.Test.MOCKK}"
-        const val DISPATCHER_PROVIDER = "com.rickbusarow.dispatcherprovider:dispatcher-provider:1.0.0-beta08"
-        const val DISPATCHER_PROVIDER_TEST = "com.rickbusarow.dispatcherprovider:dispatcher-provider-test:1.0.0-beta08"
         const val JACOCO_ANDROID = "com.dicedmelon.gradle:jacoco-android:${Versions.Test.JACOCO_ANDROID}"
         const val ESPRESSO = "androidx.test.espresso:espresso-core:${Versions.Test.ESPRESSO}"
         const val CORE_TESTING = "androidx.arch.core:core-testing:${Versions.Test.CORE_TESTING}"
@@ -112,7 +111,6 @@ object Dependencies {
         const val RUNTIME = "androidx.room:room-runtime:${Versions.AndroidX.ROOM}"
         const val COMPILER = "androidx.room:room-compiler:${Versions.AndroidX.ROOM}"
         const val TEST = "androidx.room:room-testing:${Versions.AndroidX.ROOM}"
-        const val COMMON = "androidx.room:room-common:${Versions.AndroidX.ROOM}"
     }
 
     object Network {
@@ -128,7 +126,6 @@ object Dependencies {
         const val JAVA_LITE = "com.google.protobuf:protobuf-javalite:${Versions.ProtoBuf.CORE}"
         const val KOTLIN_LITE = "com.google.protobuf:protobuf-kotlin-lite:${Versions.ProtoBuf.CORE}"
         const val ARTIFACT = "com.google.protobuf:protoc:${Versions.ProtoBuf.ARTIFACT}"
-//        const val LITE_GEN = "com.google.protobuf:protoc-gen-javalite:${Versions.ProtoBuf.LITE_GEN}"
     }
 
     object Util {
@@ -142,16 +139,9 @@ object Dependencies {
         const val JAVA_JWT = "com.auth0:java-jwt:${Versions.Utils.JWT}"
         const val SHIMMER = "com.facebook.shimmer:shimmer:${Versions.Utils.SHIMMER}"
         const val COMPRESSOR = "id.zelory:compressor:${Versions.Utils.COMPRESSOR}"
-        const val MATOMO = "org.matomo.sdk:tracker:${Versions.Utils.MATOMO_SDK}"
         const val SIMPLE_RATING_BAR = "com.iarcuschin:simpleratingbar:${Versions.Utils.SIMPLE_RATING_BAR}"
         const val IMAGE_PICKER = "com.github.dhaval2404:imagepicker:${Versions.Utils.IMAGE_PICKER}"
         const val CCP = "com.hbb20:ccp:${Versions.Utils.CCP}"
         const val GOOGLE_GSON = "com.google.code.gson:gson:${Versions.Utils.GOOGLE_GSON}"
-//        const val ALBUM = "com.yanzhenjie:album:${Versions.Utils.ALBUM}"
-    }
-
-    object Payment {
-//        const val FLUTTERWAVE_SDK = "com.github.flutterwave.rave-android:rave_android:${Versions.Payment.FLUTTERWAVE_SDK}"
-        const val FLUTTERWAVE_SDK = "com.github.Flutterwave.rave-android:rave_presentation:${Versions.Payment.FLUTTERWAVE_SDK}"
     }
 }

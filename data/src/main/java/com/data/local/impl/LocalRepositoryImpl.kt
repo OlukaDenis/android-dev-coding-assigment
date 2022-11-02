@@ -37,8 +37,8 @@ class LocalRepositoryImpl @Inject constructor(
         userDao.update(localUserMapper.toLocal(user))
     }
 
-    override suspend fun insertPost(post: PostEntity) {
-        postDao.insert(localPostMapper.toLocal(post))
+    override suspend fun insertPost(entity: PostEntity) {
+        postDao.insert(localPostMapper.toLocal(entity))
     }
 
     override suspend fun clearPosts() {

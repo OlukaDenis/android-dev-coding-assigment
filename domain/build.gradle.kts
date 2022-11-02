@@ -33,11 +33,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -59,8 +59,6 @@ dependencies {
     androidTestImplementation(Dependencies.Hilt.HILT_TEST)
     kaptAndroidTest(Dependencies.Hilt.HILT_ANDROID_COMPILER)
 
-    implementation(Dependencies.Firebase.STORAGE)
-
     testImplementation(Dependencies.Test.TRUTHY)
     testImplementation(Dependencies.Test.JUNIT)
     testImplementation(Dependencies.Test.MOCKK)
@@ -69,9 +67,6 @@ dependencies {
     androidTestImplementation(Dependencies.Test.JUNIT_EXT)
     androidTestImplementation(Dependencies.Test.ESPRESSO)
     androidTestImplementation(Dependencies.Test.CORE_TESTING)
-
-    implementation(Dependencies.AndroidX.PAGING)
-    implementation(Dependencies.AndroidX.ROOM_PAGING)
 
     implementation(Dependencies.Room.RUNTIME)
     implementation(Dependencies.Room.KTX)

@@ -52,24 +52,23 @@ object Versions {
     object AndroidX {
         const val APP_COMPAT = "1.5.1"
         const val CORE_KTX = "1.9.0"
-        const val FRAGMENT_KTX = "1.4.0"
+        const val FRAGMENT_KTX = "1.5.4"
         const val NAVIGATION = "2.5.3"
-        const val ACTIVITY_KTX = "1.4.0"
+        const val ACTIVITY_KTX = "1.6.1"
         const val MATERIAL = "1.7.0"
-        const val LIFECYCLE_KTX = "2.4.0"
+        const val LIFECYCLE_KTX = "2.5.1"
         const val WORK_MANAGER_KTX = "2.7.1"
         const val CONSTRAINT_LAYOUT = "2.1.4"
-        const val ROOM = "2.3.0"
+        const val ROOM = "2.4.3"
         const val VIEW_PAGER = "1.0.0"
         const val DATA_STORE = "1.0.0"
-        const val PAGING = "3.1.0"
-        const val ROOM_PAGING = "2.4.3"
+        const val PAGING = "3.1.1"
         const val EMOJI = "1.2.0-alpha03"
         const val SPLASHSCREEN = "1.0.0"
         const val EMOJI_COMPAT = "1.1.0"
-        const val ANNOTATION = "1.3.0"
+        const val ANNOTATION = "1.5.0"
         const val LEGACY = "1.0.0"
-        const val START_UP = "1.0.0"
+        const val START_UP = "1.1.1"
     }
 
     object Kotlin {
@@ -85,12 +84,12 @@ object Versions {
 
     object Network {
         const val RETROFIT = "2.9.0"
-        const val OKHTTP = "4.9.0"
+        const val OKHTTP = "4.10.0"
     }
 
     object Utils {
         const val GOOGLE_GSON = "2.9.0"
-        const val COIL = "1.4.0"
+        const val COIL = "2.2.2"
         const val PAGE_INDICATOR = "1.0.3@aar"
         const val TIMBER = "5.0.1"
         const val ALERTER = "7.2.4"
@@ -100,11 +99,9 @@ object Versions {
         const val JWT = "3.11.0"
         const val SHIMMER = "0.5.0"
         const val SIMPLE_RATING_BAR = "0.1.5"
-        const val MATOMO_SDK = "4.1.2"
         const val COMPRESSOR = "3.0.1"
         const val IMAGE_PICKER = "2.1"
         const val CCP = "2.5.4"
-        const val ALBUM = "2.1.3"
     }
 
     object Payment {

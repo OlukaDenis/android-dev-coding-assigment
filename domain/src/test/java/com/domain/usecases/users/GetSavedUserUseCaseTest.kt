@@ -3,6 +3,7 @@ package com.domain.usecases.users
 import com.domain.dispacher.AppDispatcher
 import com.domain.model.UserEntity
 import com.domain.repository.FakePreferenceRepository
+import com.domain.utils.dummyUser
 import com.google.common.truth.Truth
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -33,8 +34,7 @@ class GetSavedUserUseCaseTest {
     fun `Get saved pref user success`() = runBlocking {
         // Given
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
-        val user = UserEntity(10L,"Test", "test@gmail.com", "90898172", "1234", "")
-        fakePreferenceRepository.saveUser(user)
+        fakePreferenceRepository.saveUser(dummyUser)
 
         // When
         val result = getSavedUserUseCase().first()

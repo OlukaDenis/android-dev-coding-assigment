@@ -39,12 +39,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     testOptions {
@@ -73,7 +73,10 @@ dependencies {
     implementation(Dependencies.ProtoBuf.JAVA_LITE)
     implementation(Dependencies.ProtoBuf.KOTLIN_LITE)
 
-    implementation(Dependencies.Firebase.DYNAMIC_LINKS)
+    implementation(Dependencies.AndroidX.VIEWMODEL_KTX)
+    implementation(Dependencies.AndroidX.LIVEDATA_KTX)
+    kapt(Dependencies.AndroidX.LIFECYCLE_PROCESSOR)
+    testImplementation(Dependencies.AndroidX.LIFECYCLE_TESTING)
 
     implementation(Dependencies.Network.OKHTTP)
     implementation(Dependencies.Network.RETROFIT)

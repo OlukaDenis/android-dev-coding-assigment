@@ -7,6 +7,7 @@ import com.domain.repository.FakeLocalRepository
 import com.domain.repository.FakePreferenceRepository
 import com.domain.repository.RemoteRepository
 import com.domain.repository.UtilRepository
+import com.domain.utils.dummyUser
 import com.google.common.truth.Truth.assertThat
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -46,14 +47,13 @@ class FetchSingleUserUseCaseTest {
     fun `Fetch remote user success`() = runBlocking {
         // Given
         coEvery { dispatcher.io } returns Dispatchers.Unconfined
-        val user = UserEntity(10, "Test", "test@gmail.com", "90898172", "1234", "")
+        val user = dummyUser
         coEvery { remote.fetchSingleUser(any()) } returns user
 
         // When
         val result = fetchSingleUserUseCase(10)
 
         // Then
-
         result.collect {
             when(it) {
                 is Resource.Loading -> {}
